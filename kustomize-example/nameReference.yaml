@@ -1,0 +1,7 @@
+nameReference:
+  - kind: Namespace
+    fieldSpecs:
+      - path: metadata/annotations/foo
+        kind: Namespace
+        version: v1
+
