@@ -1,20 +1,73 @@
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
 metadata:
-  name: test-deploymentconfig
+  name: test-deploymentconfig-1
+  namespace: test-namespace-1
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
 spec:
-  replicas: 2
+  replicas: 1
   selector:
-    name: test-deploymentconfig
+    name: test-deploymentconfig-1
   strategy:
     type: Rolling
   template:
     metadata:
       labels:
-        name: test-deploymentconfig
+        name: test-deploymentconfig-1
     spec:
       containers:
       - image: fedora:latest
         command: [ "sleep", "600" ]
         name: test-container
         imagePullPolicy: Always
+---
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: test-deploymentconfig-2
+  namespace: test-namespace-2
+  annotations:
+    argocd.argoproj.io/sync-wave: "30"
+spec:
+  replicas: 1
+  selector:
+    name: test-deploymentconfig-2
+  strategy:
+    type: Rolling
+  template:
+    metadata:
+      labels:
+        name: test-deploymentconfig-2
+    spec:
+      containers:
+      - image: fedora:latest
+        command: [ "sleep", "600" ]
+        name: test-container
+        imagePullPolicy: Always
+---
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: test-deploymentconfig-3
+  namespace: test-namespace-3
+  annotations:
+    argocd.argoproj.io/sync-wave: "30"
+spec:
+  replicas: 1
+  selector:
+    name: test-deploymentconfig-3
+  strategy:
+    type: Rolling
+  template:
+    metadata:
+      labels:
+        name: test-deploymentconfig-3
+    spec:
+      containers:
+      - image: fedora:latest
+        command: [ "sleep", "600" ]
+        name: test-container
+        imagePullPolicy: Always
+
+
