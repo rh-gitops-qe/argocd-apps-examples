@@ -15,7 +15,7 @@ metadata:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: test-namespace-1
+  name: test-namespace-3
   annotations:
     argocd.argoproj.io/sync-wave: "30"
 
