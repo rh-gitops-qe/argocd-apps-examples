@@ -1,20 +1,19 @@
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: test-deploymentconfig-1
+  name: test-deployment-1
   namespace: test-namespace-1
   annotations:
     argocd.argoproj.io/sync-wave: "10"
 spec:
   replicas: 1
   selector:
-    name: test-deploymentconfig-1
-  strategy:
-    type: Rolling
+    matchLabels:
+      name: test-deployment-1
   template:
     metadata:
       labels:
-        name: test-deploymentconfig-1
+        name: test-deployment-1
     spec:
       containers:
       - image: fedora:latest
@@ -22,23 +21,22 @@ spec:
         name: test-container
         imagePullPolicy: Always
 ---
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: test-deploymentconfig-2
+  name: test-deployment-2
   namespace: test-namespace-2
   annotations:
     argocd.argoproj.io/sync-wave: "30"
 spec:
   replicas: 1
   selector:
-    name: test-deploymentconfig-2
-  strategy:
-    type: Rolling
+    matchLabels:
+      name: test-deployment-2
   template:
     metadata:
       labels:
-        name: test-deploymentconfig-2
+        name: test-deployment-2
     spec:
       containers:
       - image: fedora:latest
@@ -46,23 +44,22 @@ spec:
         name: test-container
         imagePullPolicy: Always
 ---
-apiVersion: apps.openshift.io/v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: test-deploymentconfig-3
+  name: test-deployment-3
   namespace: test-namespace-3
   annotations:
     argocd.argoproj.io/sync-wave: "30"
 spec:
   replicas: 1
   selector:
-    name: test-deploymentconfig-3
-  strategy:
-    type: Rolling
+    matchLabels:
+      name: test-deployment-3
   template:
     metadata:
       labels:
-        name: test-deploymentconfig-3
+        name: test-deployment-3
     spec:
       containers:
       - image: fedora:latest
